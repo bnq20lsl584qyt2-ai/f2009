@@ -3,123 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>إمبراطورية معلوماتي | OG4_Z</title>
+    <title>معلوماتي | OG4_Z SYSTEM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Cairo:wght@400;700;900&display=swap');
 
         :root {
-            --neon-cyan: #00f7ff;
-            --neon-pink: #ff007b;
-            --gold: #ffc107;
-            --bg-deep: #030408;
+            --neon-blue: #00f2ff;
+            --neon-purple: #7000ff;
             --glass: rgba(255, 255, 255, 0.03);
-            --spring: cubic-bezier(0.5, 1.5, 0.5, 1);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg: #020205;
+            --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-deep);
+            background-color: var(--bg);
             color: white;
             margin: 0;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, #10111a 0%, #030408 100%);
+            background-image: radial-gradient(circle at 50% 0%, #101025 0%, #020205 100%);
         }
 
-        /* الهيدر */
-        header { padding: 40px 20px; text-align: center; }
+        /* الهيدر الملكي */
+        header {
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
 
-        .avatar-container {
-            position: relative; display: inline-block; cursor: pointer;
+        .avatar-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
             transition: 0.5s var(--spring);
         }
-        .main-avatar {
-            width: 130px; height: 130px; border-radius: 50%;
-            border: 3px solid var(--neon-cyan); padding: 5px;
-            box-shadow: 0 0 30px var(--neon-cyan);
-        }
-        .avatar-container:hover { transform: scale(1.1) rotate(5deg); }
 
-        .empire-title {
-            font-family: 'Orbitron', sans-serif; font-size: 26px;
-            margin-top: 15px; font-weight: 900; color: white;
-            text-shadow: 0 0 10px var(--neon-cyan);
+        .imperial-avatar {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-blue);
+            padding: 5px;
+            box-shadow: 0 0 30px var(--neon-blue);
         }
 
-        /* شريط التنقل العلوي (4 أقسام) */
-        .nav-sticky {
+        .avatar-wrapper:active { transform: scale(0.9) rotate(5deg); }
+
+        .system-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            margin-top: 15px;
+            letter-spacing: 3px;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* مستطيل التنقل الزجاجي */
+        .nav-rect {
+            max-width: 95%; width: 500px;
+            margin: 0 auto 40px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
             position: sticky; top: 15px; z-index: 1000;
-            max-width: 95%; width: 500px; margin: 0 auto 30px;
-            background: rgba(10, 11, 16, 0.9); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px; display: flex; justify-content: space-around;
-            padding: 12px; backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
-        .nav-link {
-            text-align: center; color: #666; text-decoration: none;
-            font-size: 10px; font-weight: bold; transition: 0.3s;
+        .nav-item {
+            text-align: center;
+            text-decoration: none;
+            color: #777;
+            font-size: 11px;
+            font-weight: 900;
+            transition: 0.3s var(--spring);
         }
-        .nav-link.active { color: var(--neon-cyan); transform: scale(1.1); }
-        .nav-link i { display: block; font-size: 20px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--neon-blue); transform: scale(1.1); }
+        .nav-item i { display: block; font-size: 22px; margin-bottom: 5px; color: var(--neon-blue); }
 
-        /* الأقسام */
-        .content-wrap {
-            max-width: 1200px; margin: auto; padding: 0 15px 100px;
-            display: none; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px;
+        /* حاويات المحتوى */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 15px 100px;
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
         }
-        .content-wrap.active { display: grid; animation: fadeIn 0.4s var(--spring); }
+        .container.active { display: grid; animation: fadeIn 0.5s var(--spring); }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .imperial-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 25px; padding: 20px 10px; text-align: center; transition: 0.4s;
+        /* الكروت الزجاجية */
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 25px 10px;
+            text-align: center;
+            transition: 0.4s var(--spring);
+            backdrop-filter: blur(10px);
         }
-        .imperial-card:hover { border-color: var(--neon-cyan); background: rgba(0, 247, 255, 0.05); }
+        .glass-card:hover { border-color: var(--neon-blue); transform: translateY(-10px); }
 
-        .imperial-card img {
-            width: 70px; height: 70px; border-radius: 50%;
-            border: 2px solid var(--neon-cyan); margin-bottom: 12px;
+        .glass-card img {
+            width: 75px; height: 75px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-blue);
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
         }
 
-        .card-btn {
-            display: inline-block; background: var(--neon-cyan); color: black;
-            padding: 7px 20px; border-radius: 50px; font-weight: 900;
-            text-decoration: none; font-size: 12px; margin-top: 5px;
+        .action-btn {
+            display: inline-block;
+            background: var(--neon-blue);
+            color: black;
+            text-decoration: none;
+            padding: 7px 20px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 13px;
+            margin-top: 10px;
         }
 
-        /* السيرفرات */
+        /* نافذة السيرفرات (Modal) */
         .modal-servers {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-deep); z-index: 2000; display: none;
-            flex-direction: column; padding: 40px 20px;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg);
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            padding: 50px 20px;
+            overflow-y: auto;
         }
-        .modal-servers.active { display: flex; animation: slideUp 0.5s var(--spring); }
+        .modal-servers.active { display: flex; animation: slideIn 0.5s var(--spring); }
 
-        .server-box {
-            background: #0d0e15; border-right: 4px solid var(--gold);
-            border-radius: 15px; padding: 20px; margin-bottom: 15px;
-            display: flex; justify-content: space-between; align-items: center;
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        .plan-card {
+            background: var(--glass);
+            border: 1px solid var(--neon-blue);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+        .plan-card h2 { margin: 0; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 28px; }
 
-        /* لوحة التحكم */
-        #adminPanel {
-            position: fixed; top: 0; right: -100%;
-            width: 90%; max-width: 400px; height: 100%;
-            background: #08090f; z-index: 3000; padding: 30px 20px;
-            transition: 0.6s var(--spring); border-left: 2px solid var(--neon-cyan);
+        /* لوحة التحكم الشاملة (Admin) */
+        #adminDrawer {
+            position: fixed;
+            top: 0; left: -100%;
+            width: 85%; max-width: 400px; height: 100%;
+            background: #08090f;
+            z-index: 3000;
+            padding: 40px 25px;
+            transition: 0.6s var(--spring);
+            border-right: 2px solid var(--neon-blue);
         }
-        #adminPanel.active { right: 0; }
+        #adminDrawer.active { left: 0; }
 
-        .admin-input, .admin-select {
-            width: 100%; padding: 14px; background: #11121a;
-            border: 1px solid #333; color: white; border-radius: 12px; margin-bottom: 15px;
+        .admin-input {
+            width: 100%; padding: 15px; background: #111;
+            border: 1px solid #333; color: white;
+            border-radius: 12px; margin-bottom: 15px; font-family: 'Cairo';
         }
 
         .admin-btn {
-            width: 100%; padding: 15px; background: var(--neon-cyan);
-            border: none; color: black; font-weight: 900; border-radius: 12px;
+            width: 100%; padding: 15px; background: var(--neon-blue);
+            color: black; font-weight: 900; border: none;
+            border-radius: 12px; cursor: pointer;
         }
 
         .overlay {
@@ -127,129 +190,119 @@
             background: rgba(0,0,0,0.85); z-index: 2500; backdrop-filter: blur(10px);
         }
 
-        .stats {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 25px;
-        }
-        .stat-box { background: #111; padding: 10px; border-radius: 10px; text-align: center; font-size: 12px; }
-        .stat-box span { display: block; font-weight: 900; color: var(--neon-cyan); }
-
     </style>
 </head>
 <body>
 
     <header>
-        <div class="avatar-container" onclick="openAdminPrompt()">
-            <img src="https://t.me/i/userpic/320/og4_z.jpg" class="main-avatar">
+        <div class="avatar-wrapper" onclick="openAdmin()">
+            <img src="https://t.me/i/userpic/320/og4_z.jpg" class="imperial-avatar">
         </div>
-        <div class="empire-title">نظام معلوماتي</div>
-        <p style="font-size: 12px; color: gray;">بوابة المطور @og4_z</p>
+        <div class="system-title">معلوماتي OS</div>
     </header>
 
-    <!-- شريط التنقل -->
-    <div class="nav-sticky">
-        <div class="nav-link active" onclick="switchTab('bots', this)">
+    <!-- شريط التنقل الرباعي -->
+    <div class="nav-rect">
+        <a href="javascript:void(0)" class="nav-item active" onclick="switchTab('bots', this)">
             <i class="fas fa-robot"></i>
-            <span>بوتات</span>
-        </div>
-        <div class="nav-link" onclick="switchTab('channels', this)">
+            <span>البوتات</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item" onclick="switchTab('channels', this)">
             <i class="fas fa-bullhorn"></i>
-            <span>قنوات</span>
-        </div>
-        <div class="nav-link" onclick="switchTab('sites', this)">
-            <i class="fas fa-globe"></i>
-            <span>مواقعي</span>
-        </div>
-        <div class="nav-link" onclick="toggleServers(true)">
-            <i class="fas fa-crown" style="color: var(--gold);"></i>
-            <span style="color: var(--gold);">سيرفرات</span>
-        </div>
+            <span>القنوات</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item" onclick="toggleServers(true)">
+            <i class="fas fa-server"></i>
+            <span>سيرفرات</span>
+        </a>
+        <a href="https://t.me/og4_z" class="nav-item">
+            <i class="fas fa-headset"></i>
+            <span>دعم</span>
+        </a>
     </div>
 
     <!-- الأقسام -->
-    <div id="bots-sec" class="content-wrap active"></div>
-    <div id="channels-sec" class="content-wrap"></div>
-    <div id="sites-sec" class="content-wrap"></div>
+    <div id="bots-sec" class="container active"></div>
+    <div id="channels-sec" class="container"></div>
 
-    <!-- نافذة السيرفرات -->
-    <div id="serversModal" class="modal-servers">
-        <h1 style="text-align:center; font-family:'Orbitron'; color:var(--gold);">IMPERIAL SERVERS</h1>
-        <div class="server-box">
-            <div><h3 style="color:var(--gold); margin:0;">15 Star</h3><p>سيرفر لمدة 7 أيام</p></div>
-            <a href="https://t.me/og4_z" class="card-btn" style="background:var(--gold)">طلب</a>
+    <!-- واجهة السيرفرات -->
+    <div id="serverModal" class="modal-servers">
+        <h1 style="text-align:center; font-family:'Orbitron'; color:var(--neon-blue);">SERVER PLANS</h1>
+        <p style="text-align:center; color:gray; margin-bottom:40px;">نظام السيرفرات الإمبراطوري</p>
+        
+        <div class="plan-card">
+            <div><h2>7 Days</h2><p>مقابل 15 نجمة تليجرام</p></div>
+            <a href="https://t.me/og4_z" class="action-btn">حجز</a>
         </div>
-        <div class="server-box">
-            <div><h3 style="color:var(--gold); margin:0;">25 Star</h3><p>سيرفر لمدة 15 يوم</p></div>
-            <a href="https://t.me/og4_z" class="card-btn" style="background:var(--gold)">طلب</a>
+        <div class="plan-card" style="border-color: var(--neon-purple);">
+            <div><h2 style="color:var(--neon-purple)">15 Days</h2><p>مقابل 25 نجمة تليجرام</p></div>
+            <a href="https://t.me/og4_z" class="action-btn" style="background:var(--neon-purple)">حجز</a>
         </div>
-        <div class="server-box">
-            <div><h3 style="color:var(--gold); margin:0;">50 Star</h3><p>سيرفر لمدة 30 يوم</p></div>
-            <a href="https://t.me/og4_z" class="card-btn" style="background:var(--gold)">طلب</a>
+        <div class="plan-card">
+            <div><h2>30 Days</h2><p>مقابل 50 نجمة تليجرام</p></div>
+            <a href="https://t.me/og4_z" class="action-btn">حجز</a>
         </div>
-        <button onclick="toggleServers(false)" style="margin-top:auto; background:none; border:none; color:gray; padding:30px; font-weight:900;">العودة ←</button>
+
+        <button onclick="toggleServers(false)" style="margin-top:auto; background:none; border:none; color:gray; padding:30px; font-weight:900;">← العودة للقائمة الرئيسية</button>
     </div>
 
-    <!-- لوحة التحكم -->
+    <!-- لوحة التحكم (Admin) -->
     <div id="overlay" class="overlay" onclick="closeAdmin()"></div>
-    <div id="adminPanel">
-        <h2 style="color: var(--neon-cyan); font-family:'Orbitron'; text-align:center;">ADMIN v4</h2>
+    <div id="adminDrawer">
+        <h2 style="color: var(--neon-blue); font-family:'Orbitron';">ADMIN DASHBOARD</h2>
+        <p style="color:gray; font-size:12px; margin-bottom:30px;">إدارة نظام معلوماتي الشامل</p>
         
-        <div class="stats">
-            <div class="stat-box"><span id="bCount">0</span>بوت</div>
-            <div class="stat-box"><span id="cCount">0</span>قناة</div>
-            <div class="stat-box"><span id="sCount">0</span>موقع</div>
-        </div>
-
-        <input type="text" id="elName" class="admin-input" placeholder="اسم (البوت/القناة/الموقع)">
-        <input type="text" id="elUser" class="admin-input" placeholder="اليوزر (بدون @) أو الرابط">
+        <input type="text" id="elName" class="admin-input" placeholder="اسم العنصر">
+        <input type="text" id="elUser" class="admin-input" placeholder="اليوزر بدون @">
         
-        <select id="elType" class="admin-select">
+        <select id="elType" class="admin-input" style="background:#000; border-color:var(--neon-blue); color:var(--neon-blue); font-weight:900;">
             <option value="bots">إضافة لقسم البوتات</option>
             <option value="channels">إضافة لقسم القنوات</option>
-            <option value="sites">إضافة لقسم مواقعي</option>
         </select>
         
-        <button class="admin-btn" onclick="addNewElement()">حفظ ونشر التعديلات</button>
-        <p style="text-align:center; color:#333; margin-top:20px;" onclick="closeAdmin()">إغلاق</p>
+        <button class="admin-btn" onclick="deploy()">نشر العنصر (DEPLOY)</button>
+        
+        <p style="text-align:center; color:#222; margin-top:50px; cursor:pointer;" onclick="closeAdmin()">إغلاق اللوحة</p>
     </div>
 
     <script>
-        const PASS = "0623244022";
+        const PASS = "admin@2009";
 
-        function openAdminPrompt() {
-            if(prompt("كود الوصول:") === PASS) {
-                document.getElementById('adminPanel').classList.add('active');
+        function openAdmin() {
+            let p = prompt("أدخل كود الوصول الإمبراطوري:");
+            if(p === PASS) {
+                document.getElementById('adminDrawer').classList.add('active');
                 document.getElementById('overlay').style.display = 'block';
-                updateStats();
-            }
+            } else if(p !== null) alert("تم رفض الوصول!");
         }
 
         function closeAdmin() {
-            document.getElementById('adminPanel').classList.remove('active');
+            document.getElementById('adminDrawer').classList.remove('active');
             document.getElementById('overlay').style.display = 'none';
         }
 
         function switchTab(type, el) {
-            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-            document.querySelectorAll('.content-wrap').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.container').forEach(sec => sec.classList.remove('active'));
             el.classList.add('active');
             document.getElementById(type + '-sec').classList.add('active');
         }
 
         function toggleServers(show) {
-            document.getElementById('serversModal').classList.toggle('active', show);
+            document.getElementById('serverModal').classList.toggle('active', show);
         }
 
-        function addNewElement() {
+        function deploy() {
             const name = document.getElementById('elName').value;
             const user = document.getElementById('elUser').value.trim().replace('@','');
             const type = document.getElementById('elType').value;
 
-            if(!name || !user) return;
+            if(!name || !user) return alert("يرجى إكمال البيانات");
 
-            const entry = { name, user, type, id: Date.now() };
-            let db = JSON.parse(localStorage.getItem('maalomati_v4_db') || '[]');
-            db.push(entry);
-            localStorage.setItem('maalomati_v4_db', JSON.stringify(db));
+            const item = { name, user, type, id: Date.now() };
+            let db = JSON.parse(localStorage.getItem('maalomati_db_final') || '[]');
+            db.push(item);
+            localStorage.setItem('maalomati_db_final', JSON.stringify(db));
 
             render();
             closeAdmin();
@@ -258,40 +311,35 @@
         }
 
         function render() {
-            const sections = { bots: 'bots-sec', channels: 'channels-sec', sites: 'sites-sec' };
-            const counts = { bots: 0, channels: 0, sites: 0 };
-            
-            Object.values(sections).forEach(id => document.getElementById(id).innerHTML = '');
+            const botSec = document.getElementById('bots-sec');
+            const chanSec = document.getElementById('channels-sec');
+            botSec.innerHTML = ''; chanSec.innerHTML = '';
 
-            let db = JSON.parse(localStorage.getItem('maalomati_v4_db') || '[]');
+            let db = JSON.parse(localStorage.getItem('maalomati_db_final') || '[]');
 
             db.forEach(item => {
-                const isUrl = item.user.includes('http');
-                const link = isUrl ? item.user : `https://t.me/${item.user}`;
-                const img = isUrl ? `https://ui-avatars.com/api/?name=${item.name}&background=00f7ff&color=000` : `https://t.me/i/userpic/320/${item.user}.jpg`;
-
-                const card = `
-                    <div class="imperial-card">
-                        <img src="${img}" onerror="this.src='https://ui-avatars.com/api/?name=${item.name}&background=00f7ff&color=000'">
-                        <div style="font-weight:900; font-size:13px; margin-bottom:5px;">${item.name}</div>
-                        <a href="${link}" class="card-btn" target="_blank">زيارة</a>
-                        <i class="fas fa-trash" onclick="deleteItem(${item.id})" style="display:block; margin-top:10px; color:#1a1a1a; font-size:10px; cursor:pointer;"></i>
+                const html = `
+                    <div class="glass-card">
+                        <img src="https://t.me/i/userpic/320/${item.user}.jpg" onerror="this.src='https://ui-avatars.com/api/?name=${item.name}&background=00f2ff&color=000'">
+                        <div style="font-weight:900; font-size:14px; margin-bottom:5px;">${item.name}</div>
+                        <div style="color:var(--neon-blue); font-size:11px;">@${item.user}</div>
+                        <a href="https://t.me/${item.user}" class="action-btn" target="_blank">دخول</a>
+                        <br>
+                        <i class="fas fa-trash-alt" onclick="erase(${item.id})" style="margin-top:15px; color:#1a1a1a; cursor:pointer; font-size:10px;"></i>
                     </div>
                 `;
-                document.getElementById(sections[item.type]).innerHTML += card;
-                counts[item.type]++;
+                if(item.type === 'bots') botSec.innerHTML += html;
+                else chanSec.innerHTML += html;
             });
-
-            document.getElementById('bCount').innerText = counts.bots;
-            document.getElementById('cCount').innerText = counts.channels;
-            document.getElementById('sCount').innerText = counts.sites;
         }
 
-        function deleteItem(id) {
-            let db = JSON.parse(localStorage.getItem('maalomati_v4_db') || '[]');
-            db = db.filter(i => i.id !== id);
-            localStorage.setItem('maalomati_v4_db', JSON.stringify(db));
-            render();
+        function erase(id) {
+            if(confirm("هل تريد حذف هذا العنصر؟")) {
+                let db = JSON.parse(localStorage.getItem('maalomati_db_final') || '[]');
+                db = db.filter(i => i.id !== id);
+                localStorage.setItem('maalomati_db_final', JSON.stringify(db));
+                render();
+            }
         }
 
         window.onload = render;
